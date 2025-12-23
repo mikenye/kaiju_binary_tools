@@ -83,7 +83,6 @@ jobs:
           name: msdf-atlas-gen-linux-amd64
           path: ${{ runner.temp }}/msdf-atlas-gen/build/bin/msdf-atlas-gen
 
-
   build-msdf-atlas-gen-darwin-arm64:
     name: msdf-atlas-gen (darwin/arm64)
     runs-on: macos-15
@@ -156,3 +155,27 @@ jobs:
           path: |
             ${{ runner.temp }}\msdf-atlas-gen\build\bin\msdf-atlas-gen.exe
             ${{ runner.temp }}\msdf-atlas-gen\build\bin\Release\msdf-atlas-gen.exe
+
+  pr-binaries:
+    needs:
+      - build-msdf-atlas-gen-darwin-arm64
+      - build-msdf-atlas-gen-linux-amd64
+      - build-msdf-atlas-gen-linux-arm64
+      - build-msdf-atlas-gen-windows-amd64
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Copy in binaries from previous steps
+        uses: actions/download-artifact@v7
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v8
+        with:
+          title: 'Manually triggered binary update'
+          commit-message: 'Manually triggered binary update'
+          body: |
+            Generated from job ${{ github.job }}
+            
+            Automated changes by [create-pull-request](https://github.com/peter-evans/create-pull-request) GitHub action
+          branch: 'update-binaries/job_${{ github.job }}'
+          delete-branch: 'true'

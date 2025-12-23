@@ -268,7 +268,7 @@ jobs:
           chmod a+x ./msdf-atlas-gen-linux-arm64
           chmod a+x ./msdf-atlas-gen-linux-amd64
           chmod a+x ./msdf-atlas-gen-darwin-arm64
-          chmod a+x ./msdf-atlas-gen-windows-amd64.exe
+#          chmod a+x ./msdf-atlas-gen-windows-amd64.exe
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v8
         with:

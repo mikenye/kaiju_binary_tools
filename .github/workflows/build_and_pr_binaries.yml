@@ -144,9 +144,12 @@ jobs:
           git clone --recurse-submodules https://github.com/Chlumsky/msdf-atlas-gen.git "$env:RUNNER_TEMP\msdf-atlas-gen"
           cd "$env:RUNNER_TEMP\msdf-atlas-gen"
           cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
-#            -DCMAKE_TOOLCHAIN_FILE="$env:VCPKG_ROOT\scripts\buildsystems\vcpkg.cmake" `
-#            -DVCPKG_TARGET_TRIPLET=x64-windows
           cmake --build build
+
+      #            -DCMAKE_TOOLCHAIN_FILE="$env:VCPKG_ROOT\scripts\buildsystems\vcpkg.cmake" `
+      #            -DVCPKG_TARGET_TRIPLET=x64-windows
+
+
       - name: Upload binary
         uses: actions/upload-artifact@v4
         with:

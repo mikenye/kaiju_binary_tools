@@ -153,7 +153,7 @@ jobs:
       - name: Upload binary
         uses: actions/upload-artifact@v4
         with:
-          name: msdf-atlas-gen-windows-amd64
+          name: msdf-atlas-gen-windows-amd64.exe
           path: |
             ${{ runner.temp }}\msdf-atlas-gen\build\bin\msdf-atlas-gen.exe
             ${{ runner.temp }}\msdf-atlas-gen\build\bin\Release\msdf-atlas-gen.exe
@@ -211,12 +211,12 @@ jobs:
       - name: Copy in binaries from previous steps
         uses: actions/download-artifact@v7
         with:
-          name: msdf-atlas-gen-windows-amd64
+          name: msdf-atlas-gen-windows-amd64.exe
       - name: Test binary
         shell: bash
         run: |
           set -euo pipefail
-          ./msdf-atlas-gen-windows-x64.exe -help
+          ./msdf-atlas-gen-windows-amd64.exe -help
 
   pr-binaries:
     name: Create Pull Request
@@ -231,6 +231,12 @@ jobs:
         uses: actions/checkout@v6
       - name: Copy in binaries from previous steps
         uses: actions/download-artifact@v7
+      - name: Set binaries as executable
+        run: |
+          chmod a+x ./msdf-atlas-gen-linux-arm64
+          chmod a+x ./msdf-atlas-gen-linux-amd64
+          chmod a+x ./msdf-atlas-gen-darwin-arm64
+          chmod a+x ./msdf-atlas-gen-windows-amd64.exe
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v8
         with:

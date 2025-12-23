@@ -143,11 +143,10 @@ jobs:
         run: |
           git clone --recurse-submodules https://github.com/Chlumsky/msdf-atlas-gen.git "$env:RUNNER_TEMP\msdf-atlas-gen"
           cd "$env:RUNNER_TEMP\msdf-atlas-gen"
-          cmake -S . -B build -G Ninja `
-            -DCMAKE_BUILD_TYPE=Release `
-            -DCMAKE_TOOLCHAIN_FILE="$env:VCPKG_ROOT\scripts\buildsystems\vcpkg.cmake" `
-            -DVCPKG_TARGET_TRIPLET=x64-windows
-          cmake --build build --config Release
+          cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+#            -DCMAKE_TOOLCHAIN_FILE="$env:VCPKG_ROOT\scripts\buildsystems\vcpkg.cmake" `
+#            -DVCPKG_TARGET_TRIPLET=x64-windows
+          cmake --build build
       - name: Upload binary
         uses: actions/upload-artifact@v4
         with:
@@ -171,11 +170,11 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v8
         with:
-          title: 'Manually triggered binary update'
+          title: 'chore: update binaries'
           commit-message: 'Manually triggered binary update'
           body: |
-            Generated from job ${{ github.job }}
+            Generated from job ${{ github.job }}.
             
-            Automated changes by [create-pull-request](https://github.com/peter-evans/create-pull-request) GitHub action
+            Automated changes by [create-pull-request](https://github.com/peter-evans/create-pull-request) GitHub action.
           branch: 'update-binaries/job_${{ github.job }}'
           delete-branch: 'true'

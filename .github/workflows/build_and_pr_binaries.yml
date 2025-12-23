@@ -175,7 +175,7 @@ jobs:
       - name: Test binary
         run: |
           set -euo pipefail
-          ls -la
+          ls -lahR
           chmod a+x ./msdf-atlas-gen-linux-arm64
           ./msdf-atlas-gen-linux-arm64 -help
 
@@ -191,7 +191,7 @@ jobs:
       - name: Test binary
         run: |
           set -euo pipefail
-          ls -la
+          ls -lahR
           chmod a+x ./msdf-atlas-gen-linux-amd64
           ./msdf-atlas-gen-linux-amd64 -help
 
@@ -207,7 +207,7 @@ jobs:
       - name: Test binary
         run: |
           set -euo pipefail
-          ls -la
+          ls -lahR
           chmod a+x ./msdf-atlas-gen-darwin-arm64
           ./msdf-atlas-gen-darwin-arm64 -help
 
@@ -224,7 +224,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          ls -la
+          ls -lahR
           ./msdf-atlas-gen-windows-amd64.exe -help
 
   pr-binaries:

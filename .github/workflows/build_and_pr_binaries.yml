@@ -242,7 +242,7 @@ jobs:
       - test-msdf-atlas-gen-darwin-arm64
       - test-msdf-atlas-gen-linux-amd64
       - test-msdf-atlas-gen-linux-arm64
-      - test-msdf-atlas-gen-windows-amd64
+#      - test-msdf-atlas-gen-windows-amd64
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout

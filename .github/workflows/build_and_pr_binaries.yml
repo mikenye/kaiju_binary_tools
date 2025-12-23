@@ -247,8 +247,22 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
-      - name: Copy in binaries from previous steps
+      - name: "Copy in binary: msdf-atlas-gen-darwin-arm64"
         uses: actions/download-artifact@v7
+        with:
+          name: msdf-atlas-gen-darwin-arm64
+      - name: "Copy in binary: msdf-atlas-gen-linux-amd64"
+        uses: actions/download-artifact@v7
+        with:
+          name: msdf-atlas-gen-linux-amd64
+      - name: "Copy in binary: msdf-atlas-gen-linux-arm64"
+        uses: actions/download-artifact@v7
+        with:
+          name: msdf-atlas-gen-linux-arm64
+      - name: "Copy in binary: msdf-atlas-gen-windows-amd64.exe"
+        uses: actions/download-artifact@v7
+        with:
+          name: msdf-atlas-gen-windows-amd64.exe
       - name: Set binaries as executable
         run: |
           chmod a+x ./msdf-atlas-gen-linux-arm64

@@ -13,10 +13,6 @@ jobs:
     name: msdf-atlas-gen (linux/arm64)
     runs-on: ubuntu-22.04-arm
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
       - name: Install Build Dependencies (packages)
         run: |
           sudo apt-get update
@@ -54,10 +50,6 @@ jobs:
     name: msdf-atlas-gen (linux/amd64)
     runs-on: ubuntu-22.04
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
       - name: Install Build Dependencies (packages)
         run: |
           sudo apt-get update
@@ -96,10 +88,6 @@ jobs:
     name: msdf-atlas-gen (darwin/arm64)
     runs-on: macos-15
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
       - name: Install Build Dependencies (packages)
         run: |
           brew install \
@@ -131,10 +119,6 @@ jobs:
     name: msdf-atlas-gen (windows/amd64)
     runs-on: windows-2022
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
       - name: Install Build Dependencies (packages)
         shell: pwsh
         run: |

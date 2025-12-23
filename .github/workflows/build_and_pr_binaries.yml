@@ -159,6 +159,7 @@ jobs:
             ${{ runner.temp }}\msdf-atlas-gen\build\bin\Release\msdf-atlas-gen.exe
 
   pr-binaries:
+    name: Create Pull Request
     needs:
       - build-msdf-atlas-gen-darwin-arm64
       - build-msdf-atlas-gen-linux-amd64

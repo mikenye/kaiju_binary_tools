@@ -160,14 +160,10 @@ jobs:
           cmake -S . -B build -G Ninja `
             -DCMAKE_BUILD_TYPE=Release `
             -DCMAKE_TOOLCHAIN_FILE="$env:VCPKG_ROOT\scripts\buildsystems\vcpkg.cmake" `
-            -DVCPKG_TARGET_TRIPLET=x64-windows `
+            -DVCPKG_TARGET_TRIPLET=x64-windows-static `
             -DCMAKE_C_COMPILER=cl `
             -DCMAKE_CXX_COMPILER=cl
           cmake --build build
-
-      #            -DCMAKE_TOOLCHAIN_FILE="$env:VCPKG_ROOT\scripts\buildsystems\vcpkg.cmake" `
-      #            -DVCPKG_TARGET_TRIPLET=x64-windows
-
       - name: Rename binary
         run: |
           mv -v ${{ runner.temp }}/msdf-atlas-gen/build/bin/msdf-atlas-gen.exe ${{ runner.temp }}/msdf-atlas-gen/build/bin/msdf-atlas-gen-windows-amd64.exe
@@ -236,11 +232,9 @@ jobs:
         with:
           name: msdf-atlas-gen-windows-amd64.exe
       - name: Test binary
-        shell: bash
         run: |
-          set -euo pipefail
-          ls -lahR
-          ./msdf-atlas-gen-windows-amd64.exe -help
+          Get-ChildItem
+          .\msdf-atlas-gen-windows-amd64.exe -help
 
   pr-binaries:
     name: Create Pull Request

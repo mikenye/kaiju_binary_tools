@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
-set -oe pipefail
+set -euo pipefail
+
+# cd into script dir
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
+cd "$SCRIPT_DIR"
 
 # get repository root directory on local system
 REPO_ROOT="$(git rev-parse --show-superproject-working-tree)"
